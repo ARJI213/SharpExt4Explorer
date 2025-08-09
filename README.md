@@ -16,8 +16,8 @@ It supports reading Ext4 partitions from physical disks or disk image files.
 
 ## Screenshot
 
-![Ext4Explorer Screenshot](Screenshots/main.png)
-![Ext4Explorer Screenshot](Screenshots/file.png)
+![Ext4Explorer Screenshot](images/main.png)
+![Ext4Explorer Screenshot](images/file.png)
 ---
 
 ## Requirements
