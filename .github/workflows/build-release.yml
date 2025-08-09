@@ -36,7 +36,7 @@ jobs:
             --runtime $env:Runtime `
             --self-contained true `
             --output $env:OutputDir `
-            /p:PublishSingleFile=true `
+            /p:PublishSingleFile=false `
             /p:IncludeNativeLibrariesForSelfExtract=true `
             /p:EnableCompressionInSingleFile=false
         shell: pwsh
