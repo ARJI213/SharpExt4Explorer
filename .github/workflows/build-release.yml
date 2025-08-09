@@ -14,6 +14,7 @@ jobs:
       Configuration: Release
       OutputDir: release
       Runtime: win-x86
+      ProjectPath: Sharp4Explorer/SharpExt4Explorer.csproj
 
     steps:
       - name: 🧾 Checkout code
@@ -23,17 +24,14 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '6.0.x'
-          
-      - name: Debug File Structure
-        run: dir -Recurse
-        shell: pwsh
-        
+
       - name: 🔁 Restore dependencies
-        run: dotnet restore SharpExt4Explorer/SharpExt4Explorer/SharpExt4Explorer.csproj
+        run: dotnet restore $env:ProjectPath
+        shell: pwsh
 
       - name: 🛠️ Build and Publish (Self-Contained x86)
         run: |
-          dotnet publish SharpExt4Explorer/SharpExt4Explorer/SharpExt4Explorer.csproj `
+          dotnet publish $env:ProjectPath `
             --configuration $env:Configuration `
             --runtime $env:Runtime `
             --self-contained true `
