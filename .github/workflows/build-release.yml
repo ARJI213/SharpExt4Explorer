@@ -28,9 +28,9 @@ jobs:
 
       - name: 🛠️ Build and Publish (Self-Contained)
         run: |
-          dotnet publish Ext4Explorer/Ext4Explorer.csproj `
+          dotnet publish Ext4Explorer.csproj `
             --configuration $env:Configuration `
-            --runtime win-x64 `
+            --runtime win-x86 `
             --self-contained true `
             --output $env:OutputDir `
             /p:PublishSingleFile=true `
