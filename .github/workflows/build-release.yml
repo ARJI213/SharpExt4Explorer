@@ -1,10 +1,10 @@
-name: Build and Auto-Release
+name: Build and Release Self-Contained
 
 on:
   push:
     tags:
-      - 'v*' # Triggers when you push a tag like v1.0.0
-  workflow_dispatch: # Also allows manual trigger from GitHub UI
+      - 'v*'  # Triggers on version tags like v1.0.0
+  workflow_dispatch:
 
 jobs:
   build:
@@ -12,24 +12,21 @@ jobs:
 
     env:
       Configuration: Release
-      OutputDir: output
+      OutputDir: release
 
     steps:
-      - name: 🧾 Checkout Code
+      - name: 🧾 Checkout code
         uses: actions/checkout@v4
 
-      - name: 🧰 Setup .NET SDK
+      - name: 🧰 Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '6.0.x'
 
-      - name: 🔁 Restore Dependencies
+      - name: 🔁 Restore dependencies
         run: dotnet restore
 
-      - name: 🛠️ Build Solution
-        run: dotnet build --configuration $env:Configuration --no-restore
-
-      - name: 🚀 Publish Self-Contained Executable
+      - name: 🛠️ Build and Publish (Self-Contained)
         run: |
           dotnet publish Ext4Explorer/Ext4Explorer.csproj `
             --configuration $env:Configuration `
@@ -40,14 +37,14 @@ jobs:
             /p:IncludeNativeLibrariesForSelfExtract=true `
             /p:EnableCompressionInSingleFile=true
 
-      - name: 📦 Zip Published Output
-        run: Compress-Archive -Path $env:OutputDir\* -DestinationPath release.zip
+      - name: 📦 Zip Release Output
+        run: Compress-Archive -Path "$env:OutputDir\*" -DestinationPath Ext4Explorer.zip
 
       - name: 🚀 Create GitHub Release and Upload Artifact
         uses: softprops/action-gh-release@v2
         with:
           name: Release ${{ github.ref_name }}
           tag_name: ${{ github.ref_name }}
-          files: release.zip
+          files: Ext4Explorer.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
