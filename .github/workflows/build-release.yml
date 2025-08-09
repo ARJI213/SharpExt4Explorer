@@ -36,9 +36,9 @@ jobs:
             --runtime $env:Runtime `
             --self-contained true `
             --output $env:OutputDir `
-            /p:PublishSingleFile=false `
+            /p:PublishSingleFile=true `
             /p:IncludeNativeLibrariesForSelfExtract=true `
-            /p:EnableCompressionInSingleFile=false
+            /p:EnableCompressionInSingleFile=true
         shell: pwsh
 
       - name: 📦 Zip Release Output

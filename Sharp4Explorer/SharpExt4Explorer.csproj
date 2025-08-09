@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -17,9 +17,11 @@
   <ItemGroup>
     <Reference Include="DiskPartitionInfo">
       <HintPath>..\SharpExt4\DiskPartitionInfo.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="SharpExt4">
       <HintPath>..\SharpExt4\SharpExt4.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
 
@@ -38,19 +40,24 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="SharpExt4\DiskPartitionInfo.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="SharpExt4\Ijwhost.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="SharpExt4\SharpExt4.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="..\SharpExt4\DiskPartitionInfo.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="..\SharpExt4\SharpExt4.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="..\SharpExt4\Ijwhost.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="xcopy /Y /R /D &quot;$(ProjectDir)..\SharpExt4\*.dll&quot; &quot;$(TargetDir)&quot;" />
   </Target>
 
