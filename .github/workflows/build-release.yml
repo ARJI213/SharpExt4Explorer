@@ -25,11 +25,11 @@ jobs:
           dotnet-version: '6.0.x'
 
       - name: 🔁 Restore dependencies
-        run: dotnet restore Ext4Explorer/Ext4Explorer.csproj
+        run: dotnet restore SharpExt4Explorer/Ext4Explorer.csproj
 
       - name: 🛠️ Build and Publish (Self-Contained x86)
         run: |
-          dotnet publish Ext4Explorer.csproj `
+          dotnet publish SharpExt4Explorer.csproj `
             --configuration $env:Configuration `
             --runtime $env:Runtime `
             --self-contained true `
@@ -40,7 +40,7 @@ jobs:
         shell: pwsh
 
       - name: 📦 Zip Release Output
-        run: Compress-Archive -Path "$env:OutputDir\*" -DestinationPath Ext4Explorer.zip
+        run: Compress-Archive -Path "$env:OutputDir\*" -DestinationPath SharpExt4Explorer.zip
         shell: pwsh
 
       - name: 🚀 Create GitHub Release and Upload Artifact
@@ -48,6 +48,6 @@ jobs:
         with:
           name: Release ${{ github.ref_name }}
           tag_name: ${{ github.ref_name }}
-          files: Ext4Explorer.zip
+          files: SharpExt4Explorer.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
