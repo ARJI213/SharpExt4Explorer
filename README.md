@@ -1,7 +1,7 @@
-# Ext4Explorer
+# SharpExt4Explorer
 
-Ext4Explorer is a Windows desktop application for exploring and managing Ext4 file systems.  
-It supports reading Ext4 partitions from physical disks or disk image files.
+SharpExt4Explorer is a Windows desktop application for exploring and managing Linux Ext4 file systems.  
+It supports reading/writing Ext4 partitions from physical disks or disk image files.
 
 ---
 
