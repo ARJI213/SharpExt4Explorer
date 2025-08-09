@@ -13,6 +13,7 @@ jobs:
     env:
       Configuration: Release
       OutputDir: release
+      Runtime: win-x86
 
     steps:
       - name: 🧾 Checkout code
@@ -24,21 +25,23 @@ jobs:
           dotnet-version: '6.0.x'
 
       - name: 🔁 Restore dependencies
-        run: dotnet restore
+        run: dotnet restore Ext4Explorer/Ext4Explorer.csproj
 
-      - name: 🛠️ Build and Publish (Self-Contained)
+      - name: 🛠️ Build and Publish (Self-Contained x86)
         run: |
-          dotnet publish Ext4Explorer.csproj `
+          dotnet publish Ext4Explorer/Ext4Explorer.csproj `
             --configuration $env:Configuration `
-            --runtime win-x86 `
+            --runtime $env:Runtime `
             --self-contained true `
             --output $env:OutputDir `
             /p:PublishSingleFile=true `
             /p:IncludeNativeLibrariesForSelfExtract=true `
             /p:EnableCompressionInSingleFile=true
+        shell: pwsh
 
       - name: 📦 Zip Release Output
         run: Compress-Archive -Path "$env:OutputDir\*" -DestinationPath Ext4Explorer.zip
+        shell: pwsh
 
       - name: 🚀 Create GitHub Release and Upload Artifact
         uses: softprops/action-gh-release@v2
