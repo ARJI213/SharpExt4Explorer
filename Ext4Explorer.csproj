@@ -50,4 +50,8 @@
     </None>
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /Y /R /D &quot;$(ProjectDir)SharpExt4\*.dll&quot; &quot;$(TargetDir)&quot;" />
+  </Target>
+
 </Project>
