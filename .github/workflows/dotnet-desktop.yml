@@ -1,10 +1,10 @@
-name: Build and Release Ext4Explorer
+name: Build Verification
 
 on:
   push:
-    tags:
-      - 'v*'    # Trigger on tags like v1.0.0, v2.0.1 etc.
-  workflow_dispatch:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -12,41 +12,22 @@ jobs:
 
     env:
       Configuration: Release
-      Runtime: win-x64
-      ProjectPath: Ext4Explorer/Ext4Explorer.csproj
-      OutputDir: publish
+      ProjectPath: Ext4Explorer.sln
 
     steps:
-      - name: 📥 Checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: 🧰 Setup .NET SDK
+      - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '6.0.x'  # or 8.0.x if you're using .NET 8
+          dotnet-version: '6.0.x'  # or '8.0.x' as needed
 
-      - name: 🔁 Restore
+      - name: Restore dependencies
         run: dotnet restore $env:ProjectPath
 
-      - name: 🏗️ Build & Publish Self-contained
-        run: |
-          dotnet publish $env:ProjectPath `
-            --configuration $env:Configuration `
-            --runtime $env:Runtime `
-            --self-contained true `
-            --output $env:OutputDir `
-            /p:PublishSingleFile=true `
-            /p:IncludeNativeLibrariesForSelfExtract=true `
-            /p:EnableCompressionInSingleFile=true
+      - name: Build solution
+        run: dotnet build $env:ProjectPath --configuration $env:Configuration --no-restore
 
-      - name: 📦 Create ZIP package
-        run: Compress-Archive -Path "$env:OutputDir\*" -DestinationPath "Ext4Explorer-${{ github.ref_name }}.zip"
-
-      - name: 🚀 Upload ZIP to GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ github.ref_name }}
-          name: Release ${{ github.ref_name }}
-          files: Ext4Explorer-${{ github.ref_name }}.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run tests
+        run: dotnet test $env:ProjectPath --configuration $env:Configuration --no-build --verbosity normal
