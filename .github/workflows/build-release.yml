@@ -29,7 +29,7 @@ jobs:
 
       - name: 🛠️ Build and Publish (Self-Contained x86)
         run: |
-          dotnet publish SharpExt4Explorer.csproj `
+          dotnet publish SharpExt4Explorer/SharpExt4Explorer/SharpExt4Explorer.csproj `
             --configuration $env:Configuration `
             --runtime $env:Runtime `
             --self-contained true `
