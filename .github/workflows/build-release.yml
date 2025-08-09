@@ -36,7 +36,7 @@ jobs:
             --configuration $env:Configuration `
             --output $env:OutputDir `
             --runtime win-x86 `
-            --self-contained false `
+            --self-contained true `
             /p:PublishSingleFile=true `
             /p:IncludeNativeLibrariesForSelfExtract=true
 
