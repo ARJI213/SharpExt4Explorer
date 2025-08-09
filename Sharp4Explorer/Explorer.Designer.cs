@@ -232,19 +232,19 @@ namespace Ext4Explorer
             // 
             contextMenuLoad.Items.AddRange(new ToolStripItem[] { fromImageToolStripMenuItem, fromDiskToolStripMenuItem });
             contextMenuLoad.Name = "contextMenuLoad";
-            contextMenuLoad.Size = new Size(181, 70);
+            contextMenuLoad.Size = new Size(139, 48);
             // 
             // fromImageToolStripMenuItem
             // 
             fromImageToolStripMenuItem.Name = "fromImageToolStripMenuItem";
-            fromImageToolStripMenuItem.Size = new Size(180, 22);
+            fromImageToolStripMenuItem.Size = new Size(138, 22);
             fromImageToolStripMenuItem.Text = "From Image";
             fromImageToolStripMenuItem.Click += btnLoadImage_Click;
             // 
             // fromDiskToolStripMenuItem
             // 
             fromDiskToolStripMenuItem.Name = "fromDiskToolStripMenuItem";
-            fromDiskToolStripMenuItem.Size = new Size(180, 22);
+            fromDiskToolStripMenuItem.Size = new Size(138, 22);
             fromDiskToolStripMenuItem.Text = "From Disk";
             fromDiskToolStripMenuItem.Click += fromDiskToolStripMenuItem_Click;
             // 
@@ -258,7 +258,7 @@ namespace Ext4Explorer
             Controls.Add(splitContainerMain);
             KeyPreview = true;
             Name = "Explorer";
-            Text = "Ext4 Explorer";
+            Text = "SharpExt4 Explorer";
             KeyDown += Explorer_KeyDown;
             splitContainerMain.Panel1.ResumeLayout(false);
             splitContainerMain.Panel2.ResumeLayout(false);

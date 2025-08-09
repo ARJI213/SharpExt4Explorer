@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -16,10 +16,10 @@
 
   <ItemGroup>
     <Reference Include="DiskPartitionInfo">
-      <HintPath>SharpExt4\DiskPartitionInfo.dll</HintPath>
+      <HintPath>..\SharpExt4\DiskPartitionInfo.dll</HintPath>
     </Reference>
     <Reference Include="SharpExt4">
-      <HintPath>SharpExt4\SharpExt4.dll</HintPath>
+      <HintPath>..\SharpExt4\SharpExt4.dll</HintPath>
     </Reference>
   </ItemGroup>
 
@@ -51,7 +51,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /Y /R /D &quot;$(ProjectDir)SharpExt4\*.dll&quot; &quot;$(TargetDir)&quot;" />
+    <Exec Command="xcopy /Y /R /D &quot;$(ProjectDir)..\SharpExt4\*.dll&quot; &quot;$(TargetDir)&quot;" />
   </Target>
 
 </Project>
