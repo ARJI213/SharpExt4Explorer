@@ -23,7 +23,11 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '6.0.x'
-
+          
+      - name: Debug File Structure
+        run: dir -Recurse
+        shell: pwsh
+        
       - name: 🔁 Restore dependencies
         run: dotnet restore SharpExt4Explorer/SharpExt4Explorer/SharpExt4Explorer.csproj
 
