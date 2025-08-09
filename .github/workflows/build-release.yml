@@ -25,7 +25,7 @@ jobs:
           dotnet-version: '6.0.x'
 
       - name: 🔁 Restore dependencies
-        run: dotnet restore SharpExt4Explorer/SharpExt4Explorer.csproj
+        run: dotnet restore SharpExt4Explorer/SharpExt4Explorer/SharpExt4Explorer.csproj
 
       - name: 🛠️ Build and Publish (Self-Contained x86)
         run: |
