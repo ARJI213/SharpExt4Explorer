@@ -61,6 +61,7 @@ namespace Ext4Explorer
             contextMenuLoad = new ContextMenuStrip(components);
             fromImageToolStripMenuItem = new ToolStripMenuItem();
             fromDiskToolStripMenuItem = new ToolStripMenuItem();
+            updateModeToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)splitContainerMain).BeginInit();
             splitContainerMain.Panel1.SuspendLayout();
             splitContainerMain.Panel2.SuspendLayout();
@@ -168,53 +169,53 @@ namespace Ext4Explorer
             // 
             // contextMenuFiles
             // 
-            contextMenuFiles.Items.AddRange(new ToolStripItem[] { menuItemOpen, toolStripSeparator1, menuItemCopy, menuItemPaste, toolStripSeparator2, menuItemSaveAs, menuItemDelete });
+            contextMenuFiles.Items.AddRange(new ToolStripItem[] { menuItemOpen, toolStripSeparator1, menuItemCopy, menuItemPaste, toolStripSeparator2, menuItemSaveAs, updateModeToolStripMenuItem, menuItemDelete });
             contextMenuFiles.Name = "contextMenuFiles";
-            contextMenuFiles.Size = new Size(124, 126);
+            contextMenuFiles.Size = new Size(181, 170);
             contextMenuFiles.Opening += contextMenuListFiles_Opening;
             // 
             // menuItemOpen
             // 
             menuItemOpen.Name = "menuItemOpen";
-            menuItemOpen.Size = new Size(123, 22);
+            menuItemOpen.Size = new Size(180, 22);
             menuItemOpen.Text = "Open";
             menuItemOpen.Click += MenuItemOpen_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(120, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // menuItemCopy
             // 
             menuItemCopy.Name = "menuItemCopy";
-            menuItemCopy.Size = new Size(123, 22);
+            menuItemCopy.Size = new Size(180, 22);
             menuItemCopy.Text = "Copy";
             menuItemCopy.Click += menuItemCopy_Click;
             // 
             // menuItemPaste
             // 
             menuItemPaste.Name = "menuItemPaste";
-            menuItemPaste.Size = new Size(123, 22);
+            menuItemPaste.Size = new Size(180, 22);
             menuItemPaste.Text = "Paste";
             menuItemPaste.Click += menuItemPaste_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(120, 6);
+            toolStripSeparator2.Size = new Size(177, 6);
             // 
             // menuItemSaveAs
             // 
             menuItemSaveAs.Name = "menuItemSaveAs";
-            menuItemSaveAs.Size = new Size(123, 22);
+            menuItemSaveAs.Size = new Size(180, 22);
             menuItemSaveAs.Text = "Save As...";
             menuItemSaveAs.Click += MenuItemSaveAs_Click;
             // 
             // menuItemDelete
             // 
             menuItemDelete.Name = "menuItemDelete";
-            menuItemDelete.Size = new Size(123, 22);
+            menuItemDelete.Size = new Size(180, 22);
             menuItemDelete.Text = "Delete";
             menuItemDelete.Click += MenuItemDelete_Click;
             // 
@@ -248,6 +249,13 @@ namespace Ext4Explorer
             fromDiskToolStripMenuItem.Text = "From Disk";
             fromDiskToolStripMenuItem.Click += fromDiskToolStripMenuItem_Click;
             // 
+            // updateModeToolStripMenuItem
+            // 
+            updateModeToolStripMenuItem.Name = "updateModeToolStripMenuItem";
+            updateModeToolStripMenuItem.Size = new Size(180, 22);
+            updateModeToolStripMenuItem.Text = "Update Mode";
+            updateModeToolStripMenuItem.Click += updateModeToolStripMenuItem_Click;
+            // 
             // Explorer
             // 
             ClientSize = new Size(784, 461);
@@ -278,5 +286,6 @@ namespace Ext4Explorer
         private ContextMenuStrip contextMenuLoad;
         private ToolStripMenuItem fromImageToolStripMenuItem;
         private ToolStripMenuItem fromDiskToolStripMenuItem;
+        private ToolStripMenuItem updateModeToolStripMenuItem;
     }
 }

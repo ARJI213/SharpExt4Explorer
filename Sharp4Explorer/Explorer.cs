@@ -1,4 +1,6 @@
 using SharpExt4;
+using SharpExt4Explorer;
+using System;
 using System.ComponentModel;
 using System.Management;
 using System.Runtime.InteropServices;
@@ -193,7 +195,7 @@ namespace Ext4Explorer
                         item.SubItems.Add("");
                     }
 
-                    item.SubItems.Add(ModeToString(fs.GetMode(file)));
+                    item.SubItems.Add(ChangeModeDialog.ModeToString(fs.GetMode(file)));
                     item.Tag = file;
                     listFiles.Items.Add(item);
                 }
@@ -208,39 +210,6 @@ namespace Ext4Explorer
         private void listFiles_DoubleClick(object sender, EventArgs e)
         {
             MenuItemOpen_Click(sender, e);
-        }
-
-        public static string ModeToString(uint mode)
-        {
-            char fileType = '-';
-
-            if ((mode & 0xF000) == 0x4000) fileType = 'd'; // Directory
-            else if ((mode & 0xF000) == 0x8000) fileType = '-'; // Regular file
-            else if ((mode & 0xF000) == 0xA000) fileType = 'l'; // Symlink
-            else if ((mode & 0xF000) == 0x6000) fileType = 'b'; // Block device
-            else if ((mode & 0xF000) == 0x2000) fileType = 'c'; // Char device
-            else if ((mode & 0xF000) == 0x1000) fileType = 'p'; // FIFO
-            else if ((mode & 0xF000) == 0xC000) fileType = 's'; // Socket
-
-            string perms = "";
-
-            int[] shifts = { 6, 3, 0 }; // User, Group, Others
-            foreach (int shift in shifts)
-            {
-                perms += ((mode >> shift) & 0b100) != 0 ? 'r' : '-';
-                perms += ((mode >> shift) & 0b010) != 0 ? 'w' : '-';
-                perms += ((mode >> shift) & 0b001) != 0 ? 'x' : '-';
-            }
-
-            // Handle special bits
-            if ((mode & 0x0800) != 0) // Setuid
-                perms = perms.Substring(0, 2) + (perms[2] == 'x' ? 's' : 'S') + perms.Substring(3);
-            if ((mode & 0x0400) != 0) // Setgid
-                perms = perms.Substring(0, 5) + (perms[5] == 'x' ? 's' : 'S') + perms.Substring(6);
-            if ((mode & 0x0200) != 0) // Sticky
-                perms = perms.Substring(0, 8) + (perms[8] == 'x' ? 't' : 'T');
-
-            return fileType + perms;
         }
 
         private string FormatSize(ulong bytes)
@@ -623,6 +592,33 @@ namespace Ext4Explorer
             }
 
             return disks;
+        }
+
+        private void updateModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listFiles.SelectedItems.Count == 0) return;
+
+            var selectedItem = listFiles.SelectedItems[0];
+            var filePath = (string)selectedItem.Tag;
+
+            try
+            {
+                var currentMode = fs.GetMode(filePath);
+                var dialog = new ChangeModeDialog(currentMode);
+
+                if (dialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    fs.SetMode(filePath, dialog.FileMode);
+                    MessageBox.Show($"Updated mode to {ChangeModeDialog.ModeToString(dialog.FileMode)}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Refresh mode display
+                    selectedItem.SubItems[2].Text = ChangeModeDialog.ModeToString(dialog.FileMode);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to change mode: " + ex.Message);
+            }
         }
     }
 }
