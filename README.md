@@ -1,70 +1,85 @@
 # SharpExt4Explorer
 
-SharpExt4Explorer is a Windows desktop application for exploring and managing Linux Ext4 file systems.  
-It supports reading/writing Ext4 partitions from physical disks or disk image files.
+[![GitHub Stars](https://img.shields.io/github/stars/nickdu088/SharpExt4Explorer?style=social)](https://github.com/nickdu088/SharpExt4Explorer/stargazers)
+
+**SharpExt4Explorer** is a Windows desktop application that allows you to explore and manage Linux **Ext4 file systems** directly from your PC.  
+It supports both physical drives and disk image files, with the ability to read and write to Ext4 partitions.
 
 ---
 
-## Features
+## 🔍 Features
 
-- Browse Ext4 partitions on physical drives or disk images  
-- View partition details and properties  
-- Support for MBR and GPT partition tables  
-- Simple, user-friendly Windows Forms interface
-
----
-
-## Screenshot
-
-![Ext4Explorer Screenshot](images/main.png)
-![Ext4Explorer Screenshot](images/file.png)
----
-
-## Requirements
-
-- Windows 10 or later  
-- .NET 6.0 Runtime  
-- x86 platform (configured in project)
+- Explore Ext4 partitions from physical disks or image files  
+- View detailed partition information and metadata  
+- Compatible with both **MBR** and **GPT** partition tables  
+- Clean, user-friendly **Windows Forms** interface  
 
 ---
 
-## Building from Source
+## 📦 Downloads
+
+Download the latest version from the [Releases page](https://github.com/nickdu088/SharpExt4Explorer/releases).
+
+---
+
+## 🖼️ Screenshots
+
+![Main Window](images/main.png)  
+![File Browser](images/file.png)
+
+---
+
+## 🚀 Usage
+
+1. Launch the application  
+2. Choose whether to load partitions from a disk image or physical drive  
+3. Select a partition to browse its contents  
+
+---
+
+## 🧪 Building from Source (Optional)
+
+If you’d like to build the project yourself:
+
+### Requirements
+
+- Windows 10 or newer  
+- [.NET 6.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)  
+- Visual Studio 2022 or later  
+- x86 platform (configured in project settings)
+
+### Steps
 
 1. Clone the repository  
-2. Open the solution in Visual Studio 2022 or later  
+2. Open the solution in **Visual Studio 2022**  
 3. Restore NuGet packages  
-4. Build the solution targeting Release  
-5. The output will be in the `bin\Release` folder
+4. Build the project in **Release** mode  
+5. Output will be located in the `bin\Release` directory  
 
 ---
 
-## Usage
-
-- Run the executable  
-- Choose to load partitions from a disk image file or a physical disk  
-- Select a partition to explore
-
----
-
-## Dependencies
+## 📦 Dependencies
 
 - [SharpExt4](https://github.com/nickdu088/SharpExt4) (included as DLLs)  
-- System.Management (Windows-only)
+- `System.Management` (Windows-only)
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
-Feel free to submit issues or pull requests.  
-Please follow standard coding conventions and document your changes.
-
----
-
-## License
-
-[MIT License](LICENSE)
+Contributions are welcome!  
+You can report issues, suggest features, or submit pull requests.  
+Please follow standard C# coding conventions and document any significant changes.
 
 ---
 
-## Contact
-Project Link: https://github.com/nickdu088/Ext4Explorer
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 📬 Contact
+
+**GitHub Repository:** [nickdu088/SharpExt4Explorer](https://github.com/nickdu088/SharpExt4Explorer)  
+If you find the project useful, please consider **starring** the repo ⭐ to show your support!
